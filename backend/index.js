@@ -1,8 +1,7 @@
 import express from 'express'
 // import 'dotenv/config' //ani
 
-import Mess from './models/Mess.js'
-import User from './models/User.js'
+import userRouter from './routes/userRoutes.js'
 
 import sequelize  from './DB/db.js';
 // import bodyParser from 'body-parser' //ani
@@ -17,15 +16,13 @@ const port = 3000;
 app.use(cors());
 
 /////////////////////////////////////////////////////////////////////////
-app.post('/', (req, res) => {
-    res.send('running');
-})
+app.use(userRouter)
 
-app.post('/add', (req, res) => {
-let data = req.body;
-Mess.create(data);
-res.send({msg:'user added'})
-})
+// app.post('/adduser', (req, res) => {
+// let data = req.body;
+// User.create(data);
+// res.send({msg:'user added'})
+// })
 
 async function connectToDatabase() {
     try {
@@ -45,7 +42,6 @@ async function connectToDatabase() {
     } catch (error) {
         console.error('Error synchronizing database:', error);
     }
-
    
     app.listen(port, () => {
         connectToDatabase();
