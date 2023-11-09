@@ -34,16 +34,21 @@ export const addUser = async(req, res, next)=>{
 
 // ROUTE 2: Authenticate a User using: POST '/login'
 export const loginUser = async(req, res, next)=>{
-
+  
+  let success = false;
   const { Uname, Upasswd } = req.body;
   try {
     let user = await User.findOne({where: {Uname: Uname}}) //search Uname
     if(!user){
-    return res.status(400).send('Invalid credentials')
+      success = false
+      return res.status(400).send('Invalid credentials')
     }
     const passwdCompare = await bcrypt.compare(Upasswd,user.Upasswd) //compare Upasswd
     if(!passwdCompare){
-    return res.status(400).send('Invalid ')
+    // return res.status(400).send('Invalid ')
+    success = false
+    return res.status(400).json({ success, error: "Please try to login with correct credentials" });
+
     }   
     const data = { //send payload if both creds are correct
       user:{
@@ -51,7 +56,8 @@ export const loginUser = async(req, res, next)=>{
       }
     }
     const authtoken = jwt.sign(data, JWT_SECRET);
-    res.json({authtoken}) //disp details to console
+    success = true;
+    res.json({ success, authtoken }) //disp details to console
 
   } catch (err) {
     return res.status(500).send('Internal server error');
