@@ -1,0 +1,41 @@
+/* Home.css */
+
+.home-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.day-container{
+  width: 14.28%;
+}
+
+.menu-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 10px 20px;
+  overflow: hidden;
+}
+
+.day-header {
+  background-color: #505f70;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  margin: 2px;
+  border-radius: 5px;
+  /* font-weight: bold; */
+}
+
+.meal-section {
+  padding: 15px;
+}
+
+.meal-time {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.menu-item {
+  margin-bottom: 8px;
+}

@@ -2,7 +2,11 @@ import express from 'express'
 // import 'dotenv/config' //ani
 
 import userRouter from './routes/userRoutes.js'
-
+import menuRouter from './routes/menuRoutes.js'
+import Staff from './models/Staff.js'
+import Food from './models/Food.js'
+import Menu from './models/Menu.js'
+import Vote from './models/Vote.js'
 import sequelize  from './DB/db.js';
 // import bodyParser from 'body-parser' //ani
 import cors from 'cors'
@@ -17,6 +21,7 @@ app.use(cors());
 
 /////////////////////////////////////////////////////////////////////////
 app.use(userRouter)
+app.use(menuRouter)
 
 // app.post('/adduser', (req, res) => {
 // let data = req.body;
@@ -37,7 +42,7 @@ async function connectToDatabase() {
 
   (async () => {
     try {
-        await sequelize.sync({ alter: true });
+        await sequelize.sync({});
         console.log('Database synchronized');
     } catch (error) {
         console.error('Error synchronizing database:', error);

@@ -2,23 +2,19 @@ import sequelize from "../DB/db.js ";
 import { Op, Model, DataTypes } from "sequelize";
 // import useBcrypt from "sequelize-bcrypt" //ani
 
-const User = sequelize.define(
-  "User",
+const Food = sequelize.define(
+  "Food",
   {
     // Model attributes are defined here
-    Uid: {
+    Fid: {
       type: DataTypes.INTEGER, //or type: Sequelize.UUID  or DataTypes.UUID
       primaryKey: true,
       //   allowNull: false, // defaults to true
     },
-    Uname: {
+    Fname: {
       type: DataTypes.STRING,
       //   allowNull: false,
       // defaultValue: "John Doe",
-    },
-    Upasswd: {
-      type: DataTypes.STRING,
-      //   allowNull: false,
     },
 
     Mid: {
@@ -39,6 +35,8 @@ const User = sequelize.define(
 );
 
 // `sequelize.define` also returns the model
-console.log(User === sequelize.models.User); // true
+console.log(Food === sequelize.models.Food); // true
 
-export default User;
+Food.sync();
+
+export default Food;
