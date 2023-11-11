@@ -1,6 +1,10 @@
 import sequelize from "../DB/db.js ";
 import { Op, Model, DataTypes } from "sequelize";
 
+import User from "./User.js"
+import Food from "./Food.js"
+import Mess from "./Mess.js"
+
 const Vote = sequelize.define('Vote', {
     Vid: {
       type: DataTypes.INTEGER,
@@ -52,8 +56,12 @@ const Vote = sequelize.define('Vote', {
     freezeTableName: true,
   });
   
-  // Sync the models with the database
-//   Vote.sync();
+Vote.belongsTo(User, { foreignKey: 'Uid' });
+Vote.belongsTo(Mess, { foreignKey: 'Mid' });
+Vote.belongsTo(Food, { foreignKey: 'Fid' });
+
+// Sync the models with the database
+await Vote.sync();
   
   console.log(Vote === sequelize.models.Vote); // true
   export default Vote;

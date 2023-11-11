@@ -4,16 +4,24 @@ import Navbar from './Navbar';
 
 const Home = () => {
   const [menuData, setMenuData] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Fetch data from your API endpoint
     fetch('http://localhost:5000/menu') // Adjust endpoint if you've made changes
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => setMenuData(data))
-      .catch((error) => console.error('Error fetching menu data:', error));
+      .catch((error) => {
+        console.error('Error fetching menu data:', error);
+        setError('Error fetching menu data. Please try again later.');
+      });
   }, []);
 
-  // Create a function to group menu items by day
   const groupMenuByDay = () => {
     const groupedMenu = {};
     menuData.forEach((menuItem) => {
@@ -30,61 +38,28 @@ const Home = () => {
       <Navbar />
 
       <div className="home-container">
-        {Object.entries(groupMenuByDay()).map(([day, meals]) => (
-          <div key={day} className="day-container">
-            <div className="day-header">{day}</div>
-            <div className="meals-container">
-              {meals.map((menuItem) => (
-                <div key={menuItem.Menuid} className="menu-card">
-                  <div className="meal-section">
-                    <div className="meal-time">{menuItem.Timeslot}</div>
-                    <div className="menu-item">{`Fid: ${menuItem.Fid}`}</div>
+        {error ? (
+          <div className="error-message">{error}</div>
+        ) : (
+          Object.entries(groupMenuByDay()).map(([day, meals]) => (
+            <div key={day} className="day-container">
+              <div className="day-header">{day}</div>
+              <div className="meals-container">
+                {meals.map((menuItem) => (
+                  <div key={menuItem.Menuid} className="menu-card">
+                    <div className="meal-section">
+                      <div className="meal-time">{menuItem.Timeslot}</div>
+                      <div className="menu-item">{menuItem.Food.Fname}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </>
   );
 };
 
 export default Home;
-
-// import React, { useState, useEffect } from 'react';
-// import './Home.css'; // Import your CSS file
-// import Navbar from './Navbar'
-
-
-// const Home = () => {
-//   const [menuData, setMenuData] = useState([]);
-
-//   useEffect(() => {
-//     // Fetch data from your API endpoint
-//     fetch('http://localhost:5000/menu') // Replace with your actual API endpoint
-//       .then((response) => response.json())
-//       .then((data) => setMenuData(data))
-//       .catch((error) => console.error('Error fetching menu data:', error));
-//   }, []);
-
-//   return (
-//     <>
-//     <Navbar/>
-
-//     <div className="home-container">
-//       {menuData.map((menuItem) => (
-//         <div key={menuItem.Menuid} className="menu-card">
-//           <div className="day-header">{menuItem.Day}</div>
-//           <div className="meal-section">
-//             <div className="meal-time">{menuItem.Timeslot}</div>
-//             <div className="menu-item">{`Fid: ${menuItem.Fid}`}</div>
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//     </>
-//   );
-// };
-
-// export default Home;

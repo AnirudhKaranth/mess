@@ -1,6 +1,8 @@
 import sequelize from "../DB/db.js ";
 import { Op, Model, DataTypes } from "sequelize";
 // import useBcrypt from "sequelize-bcrypt" //ani
+import Mess from "./Mess.js"
+
 
 const Food = sequelize.define(
   "Food",
@@ -34,9 +36,11 @@ const Food = sequelize.define(
   }
 );
 
+Food.belongsTo(Mess, { foreignKey: 'Mid' });
+
 // `sequelize.define` also returns the model
 console.log(Food === sequelize.models.Food); // true
 
-Food.sync();
+await Food.sync();
 
 export default Food;

@@ -6,7 +6,7 @@
   justify-content: center;
 }
 .day-container{
-  width: 14.28%;
+  width: 25%;
 }
 
 .menu-card {
@@ -24,7 +24,7 @@
   text-align: center;
   margin: 2px;
   border-radius: 5px;
-  /* font-weight: bold; */
+  font-weight: bold
 }
 
 .meal-section {
@@ -32,10 +32,17 @@
 }
 
 .meal-time {
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 5px;
 }
 
 .menu-item {
   margin-bottom: 8px;
 }
+
+.error-message {
+    color: #e74c3c;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+  }

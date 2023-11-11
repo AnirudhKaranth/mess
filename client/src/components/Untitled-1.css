@@ -1,0 +1,65 @@
+/* Home.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  
+  .day-container {
+    width: 300px;
+    margin: 15px;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .day-header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    border-bottom: 2px solid #2980b9;
+  }
+  
+  .meals-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .menu-card {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 15px;
+  }
+  
+  .meal-time {
+    font-weight: bold;
+    color: #34495e;
+    font-size: 1.1em;
+  }
+  
+  .menu-item {
+    color: #2c3e50;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

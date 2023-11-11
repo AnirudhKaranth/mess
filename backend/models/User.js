@@ -1,6 +1,8 @@
 import sequelize from "../DB/db.js ";
 import { Op, Model, DataTypes } from "sequelize";
 // import useBcrypt from "sequelize-bcrypt" //ani
+import Mess from "./Mess.js"
+
 
 const User = sequelize.define(
   "User",
@@ -37,6 +39,8 @@ const User = sequelize.define(
     freezeTableName: true,
   }
 );
+
+User.belongsTo(Mess, { foreignKey: 'Mid' });
 
 // `sequelize.define` also returns the model
 console.log(User === sequelize.models.User); // true
