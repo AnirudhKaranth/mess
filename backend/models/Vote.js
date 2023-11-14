@@ -1,5 +1,5 @@
 import sequelize from "../DB/db.js ";
-import { Op, Model, DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 
 import User from "./User.js"
 import Food from "./Food.js"

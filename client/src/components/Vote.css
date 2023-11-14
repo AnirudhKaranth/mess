@@ -1,0 +1,47 @@
+.home_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.day_container{
+  width: 48%;
+  display: inline-block;
+}
+
+.menu_card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 3px 20px 3px;
+  overflow: hidden;
+}
+
+.day_header {
+  background-color: #505f70;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  margin: 2px;
+  border-radius: 8px;
+  font-weight: bold
+}
+
+.meal_section {
+  padding: 15px;
+}
+
+.meal_time {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.menu_item {
+  margin-bottom: 8px;
+}
+
+.error_message {
+    color: #e74c3c;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+  }
