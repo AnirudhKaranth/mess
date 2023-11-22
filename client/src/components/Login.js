@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({ Uname: '', Upasswd: '' });
+  const [credentials, setCredentials] = useState({ Uname: "", Upasswd: "" });
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:5000/loginuser', {
-      method: 'POST',
+    const response = await fetch("http://localhost:5000/loginuser", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ Uname: credentials.Uname, Upasswd: credentials.Upasswd }),
+      body: JSON.stringify({
+        Uname: credentials.Uname,
+        Upasswd: credentials.Upasswd,
+      }),
     });
     const json = await response.json();
 
     if (json.success) {
       console.log(json);
-      localStorage.setItem('token', json.authtoken);
-      navigate('/home');
+      localStorage.setItem("token", json.authtoken);
+      navigate("/home");
     } else {
-      alert('Invalid credentials');
+      alert("Invalid credentials");
     }
   };
 
@@ -31,51 +35,51 @@ const Login = () => {
 
   return (
     <>
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <form onSubmit={handleSubmit}>
-            <h2 className="text-center mb-4">Login</h2>
-            <div className="mb-3">
-              <label htmlFor="Uname" className="form-label">
-                Username
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                value={credentials.Uname}
-                onChange={onChange}
-                id="Uname"
-                name="Uname"
-                placeholder="Enter your username"
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="Upasswd" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                value={credentials.Upasswd}
-                onChange={onChange}
-                name="Upasswd"
-                id="Upasswd"
-                placeholder="Enter your password"
-              />
-            </div>
-            <div className="text-center">
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </div>
-          </form>
+      {/* <img src="MESS56.png" alt="Cover: Namma Mess" /> */}
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <form onSubmit={handleSubmit}>
+              <h2 className="text-center my-4">Login</h2>
+              <div className="md-3">
+                <label htmlFor="Uname" className="form-label">
+                  {/* Username */}
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={credentials.Uname}
+                  onChange={onChange}
+                  id="Uname"
+                  name="Uname"
+                  placeholder="Enter your usn"
+                />
+              </div>
+              <div className="my-2">
+                <label htmlFor="Upasswd" className="form-label">
+                  {/* Password */}
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  value={credentials.Upasswd}
+                  onChange={onChange}
+                  name="Upasswd"
+                  id="Upasswd"
+                  placeholder="Enter your password"
+                />
+              </div>
+              <div className="text-center my-3">
+                <button type="submit" className="btn btn-light my-3">
+                  SUBMIT
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
 
 export default Login;
-
