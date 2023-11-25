@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
+
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -39,6 +41,8 @@ const Signup = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
@@ -47,7 +51,7 @@ const Signup = () => {
 
             <div className="mb-3">
               <label htmlFor="Uname" className="form-label">
-                Username
+                {/* Username */}
               </label>
               <input
                 type="text"
@@ -62,7 +66,7 @@ const Signup = () => {
 
             <div className="mb-3">
               <label htmlFor="Upasswd" className="form-label">
-                Password
+                {/* Password */}
               </label>
               <input
                 type="password"
@@ -77,7 +81,7 @@ const Signup = () => {
 
             <div className="mb-3">
               <label htmlFor="Mid" className="form-label">
-                Mess ID
+                {/* Mess ID */}
               </label>
               <input
                 type="number"
@@ -99,6 +103,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

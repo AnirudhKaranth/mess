@@ -35,7 +35,7 @@ const Login = () => {
 
   return (
     <>
-      {/* <img src="MESS56.png" alt="Cover: Namma Mess" /> */}
+    
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6">

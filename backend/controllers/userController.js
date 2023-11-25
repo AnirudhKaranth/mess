@@ -9,7 +9,7 @@ export const addUser = async(req, res, next)=>{
   try{
     let user = await User.findOne({where: {Uname: req.body.Uname}}) //check if exists
     if(user){
-      return res.status(400).json({error:'user already  exists'})
+      return res.status(400).json({error:'User already exists'})
   }
   const salt = await bcrypt.genSalt(10); //generate hash
   const secPass = await bcrypt.hash(req.body.Upasswd, salt);
@@ -18,8 +18,8 @@ export const addUser = async(req, res, next)=>{
     "Upasswd": secPass,
     "Mid": req.body.Mid
   }
-  // const {userId} = req.params
   User.create(data); //insert into user
+  // const {userId} = req.params
   // res.status(201).json(data);
   // res.send({msg:'user added'})
 

@@ -70,7 +70,7 @@ const Vote = () => {
     <>
       <Navbar />
 
-      <div className="vote_container">
+      <div className="home_container">
         {error ? (
           <div className="error_message">{error}</div>
         ) : (

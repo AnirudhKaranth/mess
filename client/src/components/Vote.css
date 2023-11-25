@@ -1,4 +1,11 @@
+body{
+  background-color: white;
+
+}
+
 .home_container {
+  height: 673px;
+  background-color: white;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
