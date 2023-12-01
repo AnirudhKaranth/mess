@@ -35,46 +35,47 @@ const Login = () => {
 
   return (
     <>
-    
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-6">
-            <form onSubmit={handleSubmit}>
-              <h2 className="text-center my-4">Login</h2>
-              <div className="md-3">
-                <label htmlFor="Uname" className="form-label">
-                  {/* Username */}
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={credentials.Uname}
-                  onChange={onChange}
-                  id="Uname"
-                  name="Uname"
-                  placeholder="Enter your usn"
-                />
-              </div>
-              <div className="my-2">
-                <label htmlFor="Upasswd" className="form-label">
-                  {/* Password */}
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  value={credentials.Upasswd}
-                  onChange={onChange}
-                  name="Upasswd"
-                  id="Upasswd"
-                  placeholder="Enter your password"
-                />
-              </div>
-              <div className="text-center my-3">
-                <button type="submit" className="btn btn-light my-3">
-                  SUBMIT
-                </button>
-              </div>
-            </form>
+      <div className="full-screen bg-home">
+        <div className="container ">
+          <div className="row justify-content-center">
+            <div className="login-form">
+              <form onSubmit={handleSubmit}>
+                <h2 className="text-center my-4">Login</h2>
+                <div className="md-3">
+                  <label htmlFor="Uname" className="form-label">
+                    {/* Username */}
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={credentials.Uname}
+                    onChange={onChange}
+                    id="Uname"
+                    name="Uname"
+                    placeholder="Enter your usn"
+                  />
+                </div>
+                <div className="my-2">
+                  <label htmlFor="Upasswd" className="form-label">
+                    {/* Password */}
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={credentials.Upasswd}
+                    onChange={onChange}
+                    name="Upasswd"
+                    id="Upasswd"
+                    placeholder="Enter your password"
+                  />
+                </div>
+                <div className="text-center my-3">
+                  <button type="submit" className="btn btn-light my-3">
+                    SUBMIT
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

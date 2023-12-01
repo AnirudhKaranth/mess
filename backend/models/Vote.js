@@ -46,12 +46,12 @@ const Vote = sequelize.define('Vote', {
   
   }, {
     // Define a unique constraint for the combination of userid, day, and timeslot
-    indexes: [
-      {
-        unique: true,
-        fields: ['Uid', 'Day', 'Timeslot'],
-      },
-    ],
+    // indexes: [
+    //   {
+    //     unique: true,
+    //     fields: ['Uid', 'Day', 'Timeslot'],
+    //   },
+    // ],
     timestamps: false,
     freezeTableName: true,
   });

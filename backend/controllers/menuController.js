@@ -32,29 +32,20 @@ export const showMenu = async (req, res) => {
     }
   };
 
-
-
 // ROUTE 2: Vote for menu items using: POST '/votemenu'
 export const voteMenu = async (req, res) => {
   try {
-    let voted = false;
-    const userId = req.header('userId'); // Temporary
-    // const { userId } = req; // Assuming userId is available from authentication middleware
-    const { votes } = req.body; // Assuming votes is an array of objects with day, timeslot, and Fid
+    const userId = req.header('userId');
+    const { votes } = req.body;
 
-    // Check if the user has already voted for any of the specified day and timeslot combinations
-    // const existingVotes = await Vote.findAll({
-    //   where: {
-    //     Uid: userId,
-    //     ...votes.map((vote) => {
-    //       console.log({ Day: vote.day, Timeslot: vote.timeslot }); // Add this line for debugging
-    //       return { Day: vote.day, Timeslot: vote.timeslot };
-    //     }),
-    //   },
-    // });
+    const existingVotes = votes.length > 0
+  ? await Vote.findAll({
+      where: sequelize.literal(`(Uid = ${userId} AND (${votes.map(vote => `(Day = '${vote.day}' AND Timeslot = '${vote.timeslot}')`).join(' OR ')}))`),
+    })
+  : [];
 
-    // if (existingVotes.length === 0) {
-      // User hasn't voted for any of these day and timeslot combinations, proceed to save votes
+
+    if (existingVotes.length === 0) {
       await Vote.bulkCreate(
         votes.map((vote) => ({
           Uid: userId,
@@ -64,21 +55,20 @@ export const voteMenu = async (req, res) => {
           Fid: vote.Fid,
         }))
       );
-      voted = true;
-    // if(voted)
       res.json({ success: true });
-    // } 
-    // else {
-    //   res.status(400).json({ error: 'You have already voted for one or more of these day and timeslot combinations.' });
-    // }
+    } else {
+      res.status(400).json({
+        error: 'You have already voted for one or more of these day and timeslot combinations.',
+      });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
-
 // ROUTE 3: Function to MANUALLY update menu based on highest voted food for Saturday and Sunday using PUT '/updatemenu'
+
 export const updateMenu = async (req, res) => {
   try {
     await sequelize.transaction(async (t) => {
@@ -88,12 +78,13 @@ export const updateMenu = async (req, res) => {
           day: ['SATURDAY', 'SUNDAY'],
         },
         group: ['Day', 'Timeslot', 'Fid'],
-        order: [[sequelize.literal('vote_count'), 'DESC']],
+        order: [[sequelize.literal('vote_count')]],
         raw: true,
         nest: true,
       });
 
       for (const vote of rankedVotes) {
+        console.log(rankedVotes)
         const { Day, Timeslot, Fid } = vote;
         await Menu.update({ Fid }, { where: { Day, Timeslot }, limit: 1, transaction: t });
       }
@@ -119,4 +110,30 @@ cron.schedule('0 18 * * 5', () => {
   updateMenu();
 });
 
+// ROUTE 4: Function to display food options to vote'/foodoptions'
+
+// export const foodOptions = async (req, res) => {
+//   try {
+//     const { fids } = req.body;
+
+//     // Fetch food names based on Fids
+//     const foodNames = await Food.findAll({
+//       attributes: ['Fid', 'Fname'],
+//       where: {
+//         Fid: fids,
+//       },
+//     });
+
+//     // Create a map of Fid to Fname
+//     const foodOptions = foodNames.reduce((acc, { Fid, Fname }) => {
+//       acc[Fid] = Fname;
+//       return acc;
+//     }, {});
+
+//     res.json(foodOptions);
+//   } catch (error) {
+//     console.error('Error fetching food names:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
 

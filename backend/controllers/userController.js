@@ -19,10 +19,7 @@ export const addUser = async(req, res, next)=>{
     "Mid": req.body.Mid
   }
   User.create(data); //insert into user
-  // const {userId} = req.params
-  // res.status(201).json(data);
-  // res.send({msg:'user added'})
-
+  
   const authtoken = jwt.sign(data, JWT_SECRET);
   res.json({data, authtoken}) 
 

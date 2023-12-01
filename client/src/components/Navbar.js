@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/home">
             Hostel Mess
           </Link>
           <button
@@ -25,15 +25,18 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}aria-current="page" to="/home">Menu</Link>
+                <Link className={`nav-link ${location.pathname === "/cover" ? "active" : ""}`} to="/cover">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/vote">Vote</Link>
+                <Link className={`nav-link ${location.pathname === "/home" ? "active" : ""}`} to="/home">Menu</Link>
+              </li>
+              <li className="nav-item">
+                <Link className={`nav-link ${location.pathname === "/vote" ? "active" : ""}`} to="/vote">Vote</Link>
               </li>
             </ul>
             {/* <form className="d-flex" role="search"> */}
             {/* <Link className="btn btn-primary mx-2" to="/login" >Logout</Link> */}
-            <Link className={`mx-1 nav-link ${location.pathname === "/signup" ? "active" : ""}`} to="/signup" >Signup</Link>
+            <Link className={`mx-2 nav-link ${location.pathname === "/signup" ? "active" : ""}`} to="/signup" >Signup</Link>
             <Link className={`mx-1 nav-link ${location.pathname === "/account" ? "active" : ""}`} to="/account" >Account</Link>
             {/* </form> */}
           </div>

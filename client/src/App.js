@@ -6,6 +6,7 @@ import Vote from "./components/Vote";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
 import Account from "./components/Account";
+import Cover from "./components/Cover";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/cover" element={<Cover/>} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/vote" element={<Vote />} />
         <Route exact path="/signup" element={<Signup />} />

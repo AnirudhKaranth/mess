@@ -10,6 +10,7 @@ const router = express.Router();
 router.get('/menu',showMenu)
 router.put('/updatemenu',updateMenu)
 router.post('/votemenu',voteMenu)
+// router.post('/foodoptions',foodOptions)
 
 
 export default router

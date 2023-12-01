@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
-
+import './Signup.css';
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -10,7 +10,7 @@ const Signup = () => {
     Mid: '',
   });
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const Signup = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({Uname: credentials.Uname, Upasswd: credentials.Upasswd, Mid: credentials.Mid}),
+        body: JSON.stringify({ Uname: credentials.Uname, Upasswd: credentials.Upasswd, Mid: credentials.Mid }),
       });
       const json = await response.json();
 
@@ -28,7 +28,7 @@ const Signup = () => {
         alert(json.error);
       } else {
         alert('User added successfully');
-        navigate('/home'); //redirect to a different page after successful addition
+        // navigate('/home'); //redirect to a different page after successful addition
       }
     } catch (error) {
       console.error(error.message);
@@ -42,67 +42,44 @@ const Signup = () => {
 
   return (
     <>
-    <Navbar />
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
+      <Navbar />
+      <div className="signup-container">
+        <div className="signup-form">
+          <h2>Add User</h2>
           <form onSubmit={handleSubmit}>
-            <h2 className="text-center mb-4">Add User</h2>
-
-            <div className="mb-3">
-              <label htmlFor="Uname" className="form-label">
-                {/* Username */}
-              </label>
+            <label>
+              Username
               <input
                 type="text"
-                className="form-control"
+                name="Uname"
                 value={credentials.Uname}
                 onChange={handleChange}
-                id="Uname"
-                name="Uname"
-                placeholder="Enter username"
+                required
               />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="Upasswd" className="form-label">
-                {/* Password */}
-              </label>
+            </label>
+            <label>
+              Password
               <input
                 type="password"
-                className="form-control"
+                name="Upasswd"
                 value={credentials.Upasswd}
                 onChange={handleChange}
-                id="Upasswd"
-                name="Upasswd"
-                placeholder="Enter password"
+                required
               />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="Mid" className="form-label">
-                {/* Mess ID */}
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                value={credentials.Mid}
-                onChange={handleChange}
-                id="Mid"
-                name="Mid"
-                placeholder="Enter Mess ID"
-              />
-            </div>
-
-            <div className="text-center">
-              <button type="submit" className="btn btn-primary">
-                Add User
-              </button>
-            </div>
+            </label>
+            <label>
+              Mess
+              <select type="number" name="Mid" value={credentials.Mid} onChange={handleChange} required
+              >
+                <option value="" disabled >Select</option>
+                <option value="1">South</option>
+                <option value="2">North</option>
+              </select>
+            </label>
+            <button type="submit">Sign Up</button>
           </form>
         </div>
       </div>
-    </div>
     </>
   );
 };
