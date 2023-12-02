@@ -7,6 +7,7 @@ import Vote from "./components/Vote";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
 import Account from "./components/Account";
+import StaffLogin from "./components/StaffLogin";
 
 import EditMenu from "./components/EditMenu";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -17,7 +18,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Login />} />
-        <Route exact path="/signup" element={ <Signup />} />
+        <Route exact path="/stafflogin" element={ <StaffLogin />} />
         <Route exact path="/menu" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route exact path="/vote" element={<ProtectedRoute><Vote /></ProtectedRoute>} />
         <Route exact path="/signup" element={<Signup />} />

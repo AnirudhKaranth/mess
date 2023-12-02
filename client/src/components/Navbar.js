@@ -5,8 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 const Navbar = () => {
   const location = useLocation();
   let user = localStorage.getItem('user')
-  user = user ? JSON.parse : null
-
+  user = user ? JSON.parse(user) : null
+  console.log(user);
   return (
       <nav className="navbar navbar-expand-lg" style={{backgroundColor: 'lightgray'}}>
         <div className="container-fluid">
@@ -33,12 +33,11 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link className={`nav-link ${location.pathname === "/menu" ? "active" : ""}`} to="/menu">Menu</Link>
               </li>
-              {user.role==="owner " && <Link to='/addFood' className='p-3  sm:inline-block'><GrAdd fontSize={25} /></Link>}
             </ul>
             {/* <form className="d-flex" role="search"> */}
             {/* <Link className="btn btn-primary mx-2" to="/login" >Logout</Link> */}
-            <Link className={`mx-2 nav-link ${location.pathname === "/editmenu" ? "active" : ""}`} to="/editmenu" >EditMenu</Link>
-            <Link className={`mx-2 nav-link ${location.pathname === "/signup" ? "active" : ""}`} to="/signup" >Signup</Link>
+            {user?.user?.role==="staff" && <Link className={`mx-2 nav-link ${location.pathname === "/editmenu" ? "active" : ""}`} to="/editmenu" >EditMenu</Link>}
+            {user?.user?.role==="staff" && <Link className={`mx-2 nav-link ${location.pathname === "/signup" ? "active" : ""}`} to="/signup" >Signup</Link>}
             <Link className={`mx-1 nav-link ${location.pathname === "/account" ? "active" : ""}`} to="/account" >Account</Link>
             {/* </form> */}
           </div>

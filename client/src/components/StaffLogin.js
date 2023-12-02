@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-const Login = () => {
+const StaffLogin = () => {
   const [credentials, setCredentials] = useState({ Uname: "", Upasswd: "" });
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/loginuser", {
+    const response = await fetch("http://localhost:5000/loginstaff", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        Uname: credentials.Uname,
-        Upasswd: credentials.Upasswd,
+        Sname: credentials.Uname,
+        Spasswd: credentials.Upasswd,
       }),
     });
     const json = await response.json();
@@ -55,7 +55,7 @@ const Login = () => {
                     onChange={onChange}
                     id="Uname"
                     name="Uname"
-                    placeholder="Enter your usn"
+                    placeholder="Enter StaffID"
                   />
                 </div>
                 <div className="my-2">
@@ -89,4 +89,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default StaffLogin;
