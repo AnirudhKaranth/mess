@@ -1,289 +1,55 @@
-// import React, { useState, useEffect } from 'react';
-// import './Vote.css';
-// import Navbar from './Navbar';
+/* Home.css */
 
-// const Vote = () => {
-//   const [weekendMenu, setWeekendMenu] = useState([]);
-//   const [error, setError] = useState(null);
+.home-container {
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0em;
+  justify-content: center;
+  
+}
+.day-container{
+  width: 25%;
+}
 
-//   useEffect(() => {
-//     // Fetch data for Saturday and Sunday from your API endpoint
-//     fetch('http://localhost:5000/menu') // Adjust endpoint if you've made changes
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then((data) => {
-//         // Filter the data to include only Saturday and Sunday menu items
-//         const weekendData = data.filter((menuItem) => menuItem.Day === 'SATURDAY' || menuItem.Day === 'SUNDAY');
-//         setWeekendMenu(weekendData);
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching weekend menu data:', error);
-//         setError('Error fetching weekend menu data. Please try again later.');
-//       });
-//   }, []);
+.menu-card {
+  background-color: rgb(247, 247, 245);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 7px 4px;
+  overflow: hidden;
+  padding: 5px;
+}
 
-//   const groupMenuByDay = () => {
-//     const groupedMenu = {};
-//     weekendMenu.forEach((menuItem) => {
-//       if (!groupedMenu[menuItem.Day]) {
-//         groupedMenu[menuItem.Day] = [];
-//       }
-//       groupedMenu[menuItem.Day].push(menuItem);
-//     });
-//     return groupedMenu;
-//   };
+.day-header {
+  background-color: #707b87;
+  /* background-color: #505f70; */
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  margin: 2px;
+  border-radius: 5px;
+  font-weight: bold
+}
 
-//   return (
-//     <>
-//       <Navbar />
+.meal-section {
+  padding: 15px;
+}
 
-//       <div className="home_container">
-//         {error ? (
-//           <div className="error_message">{error}</div>
-//         ) : (
-//           Object.entries(groupMenuByDay()).map(([day, meals]) => (
-//             <div key={day} className="day_container">
-//               <div className="day_header">{day}</div>
-//               <div className="meals_container">
-//                 {meals.map((menuItem) => (
-//                   <div key={menuItem.Menuid} className="menu_card">
-//                     <div className="meal_section">
-//                       <div className="meal_time">{menuItem.Timeslot}</div>
-//                       <div className="menu_item">{menuItem.Food.Fname}</div>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           ))
-//         )}
-//       </div>
-//     </>
-//   );
-// };
+.meal-time {
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
 
-// export default Vote;
+.menu-item {
+  margin-bottom: 8px;
+  font-size: large;
+}
 
-// import React, { useState, useEffect } from 'react';
-// import './Vote.css';
-// import Navbar from './Navbar';
-
-// const Vote = () => {
-//   const [weekendMenu, setWeekendMenu] = useState([]);
-//   const [error, setError] = useState(null);
-//   const [selectedMenuItems, setSelectedMenuItems] = useState({});
-
-//   useEffect(() => {
-//     // Fetch data for Saturday and Sunday from your API endpoint
-//     fetch('http://localhost:5000/menu') // Adjust endpoint if you've made changes
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then((data) => {
-//         // Filter the data to include only Saturday and Sunday menu items
-//         const weekendData = data.filter((menuItem) => menuItem.Day === 'SATURDAY' || menuItem.Day === 'SUNDAY');
-//         setWeekendMenu(weekendData);
-//         setSelectedMenuItems(weekendData.reduce((acc, item) => ({ ...acc, [item.Menuid]: false }), {}));
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching weekend menu data:', error);
-//         setError('Error fetching weekend menu data. Please try again later.');
-//       });
-//   }, []);
-
-//   const groupMenuByDay = () => {
-//     const groupedMenu = {};
-//     weekendMenu.forEach((menuItem) => {
-//       if (!groupedMenu[menuItem.Day]) {
-//         groupedMenu[menuItem.Day] = [];
-//       }
-//       groupedMenu[menuItem.Day].push(menuItem);
-//     });
-//     return groupedMenu;
-//   };
-
-//   const handleVote = (menuId) => {
-//     setSelectedMenuItems((prevSelectedMenuItems) => ({
-//       ...prevSelectedMenuItems,
-//       [menuId]: !prevSelectedMenuItems[menuId],
-//     }));
-//   };
-
-//   return (
-//     <>
-//       <Navbar />
-
-//       <div className="home_container">
-//         {error ? (
-//           <div className="error_message">{error}</div>
-//         ) : (
-//           Object.entries(groupMenuByDay()).map(([day, meals]) => (
-//             <div key={day} className="day_container">
-//               <div className="day_header">{day}</div>
-//               <div className="meals_container">
-//                 {meals.map((menuItem) => (
-//                   <div key={menuItem.Menuid} className="menu_card">
-//                     <div className="meal_section">
-//                       <div className="meal_time">{menuItem.Timeslot}</div>
-//                       <div className="menu_item">{menuItem.Food.Fname}</div>
-//                     </div>
-//                     <div className="vote_section">
-//                       <select
-//                         value={selectedMenuItems[menuItem.Menuid] ? 'voted' : 'notVoted'}
-//                         onChange={() => handleVote(menuItem.Menuid)}
-//                       >
-//                         <option value="notVoted">Not Voted</option>
-//                         <option value="voted">Voted</option>
-//                       </select>
-//                       <button
-//                         className="vote_button"
-//                         onClick={() => handleVote(menuItem.Menuid)}
-//                         disabled={selectedMenuItems[menuItem.Menuid]}
-//                       >
-//                         Finalize Vote
-//                       </button>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           ))
-//         )}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Vote;
-
-// TEMP VOTE COMPLEX VERS
-// import React, { useState, useEffect } from 'react';
-// import './Vote.css';
-// import Navbar from './Navbar';
-
-// const Vote = () => {
-//   const [weekendMenu, setWeekendMenu] = useState([]);
-//   const [error, setError] = useState(null);
-//   const [selectedMenuItems, setSelectedMenuItems] = useState({});
-
-//   useEffect(() => {
-//     fetch('http://localhost:5000/menu')
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then((data) => {
-//         const weekendData = data.filter((menuItem) => menuItem.Day === 'SATURDAY' || menuItem.Day === 'SUNDAY');
-//         setWeekendMenu(weekendData);
-//         setSelectedMenuItems(weekendData.reduce((acc, item) => ({ ...acc, [item.Menuid]: false }), {}));
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching weekend menu data:', error);
-//         setError('Error fetching weekend menu data. Please try again later.');
-//       });
-//   }, []);
-
-//   const groupMenuByDay = () => {
-//     const groupedMenu = {};
-//     weekendMenu.forEach((menuItem) => {
-//       if (!groupedMenu[menuItem.Day]) {
-//         groupedMenu[menuItem.Day] = [];
-//       }
-//       groupedMenu[menuItem.Day].push(menuItem);
-//     });
-//     return groupedMenu;
-//   };
-
-//   const handleVote = async (menuId) => {
-//     try {
-//       const menuItem = weekendMenu.find((item) => item.Menuid === menuId);
-//       const response = await fetch('http://localhost:5000/votemenu', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'userId': '1',
-//           // Add any additional headers if needed, e.g., authentication headers
-//         },
-//         body: JSON.stringify({
-//           votes: [
-//             {
-//               day: menuItem.Day,
-//               timeslot: menuItem.Timeslot,
-//               Fid: menuItem.Food.Fid, // Assuming Food model has Fid field
-//             },
-//           ],
-//         }),
-//       });
-
-//       const data = await response.json();
-
-//       if (data.success) {
-//         console.log('Vote successful');
-//         setSelectedMenuItems((prevSelectedMenuItems) => ({
-//           ...prevSelectedMenuItems,
-//           [menuId]: true,
-//         }));
-//       } else {
-//         console.error('Voting failed');
-//       }
-//     } catch (error) {
-//       console.error('An error occurred while voting:', error);
-//     }
-//   };
-
-//   return (
-//     <>
-//       <Navbar />
-
-//       <div className="home_container">
-//         {error ? (
-//           <div className="error_message">{error}</div>
-//         ) : (
-//           Object.entries(groupMenuByDay()).map(([day, meals]) => (
-//             <div key={day} className="day_container">
-//               <div className="day_header">{day}</div>
-//               <div className="meals_container">
-//                 {meals.map((menuItem) => (
-//                   <div key={menuItem.Menuid} className="menu_card">
-//                     <div className="meal_section">
-//                       <div className="meal_time">{menuItem.Timeslot}</div>
-//                       <div className="menu_item">{menuItem.Food.Fname}</div>
-//                     </div>
-//                     <div className="vote_section">
-//                       <select
-//                         value={selectedMenuItems[menuItem.Menuid] ? '2' : '1'}
-//                         onChange={() => handleVote(menuItem.Menuid)}
-//                         disabled={selectedMenuItems[menuItem.Menuid]}
-//                       >
-//                         <option value="1">1</option>
-//                         <option value="2">2</option>
-//                       </select>
-//                       <button
-//                         className="vote_button"
-//                         onClick={() => handleVote(menuItem.Menuid)}
-//                         disabled={selectedMenuItems[menuItem.Menuid]}
-//                       >
-//                         Finalize Vote
-//                       </button>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           ))
-//         )}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Vote;
+.error-message {
+    color: #e74c3c;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+  }

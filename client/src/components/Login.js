@@ -23,7 +23,7 @@ const Login = () => {
     if (json.success) {
       console.log(json);
       localStorage.setItem("token", json.authtoken);
-      navigate("/home");
+      navigate("/vote");
     } else {
       alert("Invalid credentials");
     }
@@ -35,12 +35,12 @@ const Login = () => {
 
   return (
     <>
-      <div className="full-screen bg-home">
+      <div className="full-screen bg-login">
         <div className="container ">
           <div className="row justify-content-center">
             <div className="login-form">
               <form onSubmit={handleSubmit}>
-                <h2 className="text-center my-4">Login</h2>
+                <h2 className="text-center my-4">LOGIN</h2>
                 <div className="md-3">
                   <label htmlFor="Uname" className="form-label">
                     {/* Username */}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Vote.css';
 import Navbar from './Navbar';
+import Cover from './Cover';
 
 const Vote = () => {
   const [selectedFids, setSelectedFids] = useState({});
@@ -54,7 +55,7 @@ const Vote = () => {
           votes: selectedMenuItems.map((menuItem) => ({
             day: menuItem.Day,
             timeslot: menuItem.Timeslot,
-            Fid: selectedFids[menuItem.Timeslot],
+            Fid: selectedFids[`${day}-${menuItem.Timeslot}`],
           })),
         }),
       });
@@ -67,18 +68,20 @@ const Vote = () => {
     }
   };
 
-  const handleChange = (e, timeslot) => {
+  const handleChange = (e, key) => {
     setSelectedFids((prevSelectedFids) => ({
       ...prevSelectedFids,
-      [timeslot]: e.target.value,
+      [key]: e.target.value,
     }));
   };
+  
 
   return (
-    <>
+    <div className='full-screen nav_vote_container'>
       <Navbar />
-
-      <div className="home_container">
+      <Cover/>
+      <br />
+      <div className="vote_container">
         {error ? (
           <div className="error_message">{error}</div>
         ) : (
@@ -93,15 +96,53 @@ const Vote = () => {
                       <div className="menu_item">{menuItem.Food.Fname}</div>
                     </div>
                     <div className="vote_section">
-                     
-              <select type="number" name="Fid" value={selectedFids[menuItem.Timeslot] || ''} onChange = {(e) => handleChange(e, menuItem.Timeslot)} required
-              >
-                <option value="" disabled >Select</option>
-                <option value="1">Fname1</option>
-                <option value="2">Fname2</option>
-                <option value="3">Fname3</option>
-                <option value="4">Fname4</option>
-              </select>
+
+                    <select
+                      type="number"
+                      name="Fid"
+                      value={selectedFids[`${day}-${menuItem.Timeslot}`] || ''}
+                      onChange={(e) => handleChange(e, `${day}-${menuItem.Timeslot}`)}
+                      required
+                    >
+                        <option value="" disabled>Select</option>
+                {(day === 'SATURDAY' && menuItem.Timeslot === 'Morning') && (
+                  <>
+                    <option value="1">Fname1</option>
+                    <option value="2">Fname2</option>
+                  </>
+                )}
+                {(day === 'SUNDAY' && menuItem.Timeslot === 'Morning') && (
+                  <>
+                    <option value="3">Fname3</option>
+                    <option value="4">Fname4</option>
+                  </>
+                )}
+                {(day === 'SATURDAY' && menuItem.Timeslot === 'Afternoon') && (
+                  <>
+                    <option value="5">Fname5</option>
+                    <option value="6">Fname6</option>
+                  </>
+                )}
+                {(day === 'SUNDAY' && menuItem.Timeslot === 'Afternoon') && (
+                  <>
+                    <option value="7">Fname7</option>
+                    <option value="8">Fname8</option>
+                  </>
+                )}
+                {(day === 'SATURDAY' && menuItem.Timeslot === 'Night') && (
+                  <>
+                    <option value="9">Fname9</option>
+                    <option value="10">Fname10</option>
+                  </>
+                )}
+                {(day === 'SUNDAY' && menuItem.Timeslot === 'Night') && (
+                  <>
+                    <option value="11">Fname11</option>
+                    <option value="12">Fname12</option>
+                  </>
+                )}
+</select>
+            
             
                     </div>
                   </div>
@@ -115,7 +156,7 @@ const Vote = () => {
           ))
         )}
       </div>
-    </>
+    </div>
   );
 };
 

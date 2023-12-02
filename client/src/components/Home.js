@@ -1,3 +1,4 @@
+// Home.js
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Navbar from './Navbar';
@@ -34,7 +35,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className='full-screen nav-home-container'>
       <Navbar />
 
       <div className="home-container">
@@ -42,15 +43,13 @@ const Home = () => {
           <div className="error-message">{error}</div>
         ) : (
           Object.entries(groupMenuByDay()).map(([day, meals]) => (
-            <div key={day} className="day-container">
+            <div key={day} className="menu-card">
               <div className="day-header">{day}</div>
               <div className="meals-container">
                 {meals.map((menuItem) => (
-                  <div key={menuItem.Menuid} className="menu-card">
-                    <div className="meal-section">
-                      <div className="meal-time">{menuItem.Timeslot}</div>
-                      <div className="menu-item">{menuItem.Food.Fname}</div>
-                    </div>
+                  <div key={menuItem.Menuid} className="meal-section">
+                    <div className="meal-time">{menuItem.Timeslot}</div>
+                    <div className="menu-item">{menuItem.Food.Fname}</div>
                   </div>
                 ))}
               </div>
@@ -58,7 +57,7 @@ const Home = () => {
           ))
         )}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -42,36 +42,39 @@ const Signup = () => {
 
   return (
     <>
+      <div className="full-screen bg-signup">
       <Navbar />
       <div className="signup-container">
         <div className="signup-form">
-          <h2>Add User</h2>
+          <h2>ADD USER</h2>
           <form onSubmit={handleSubmit}>
             <label>
-              Username
+              
               <input
                 type="text"
                 name="Uname"
                 value={credentials.Uname}
+                placeholder='Username'
                 onChange={handleChange}
                 required
               />
             </label>
             <label>
-              Password
+              
               <input
                 type="password"
                 name="Upasswd"
                 value={credentials.Upasswd}
+                placeholder='Password'
                 onChange={handleChange}
                 required
               />
             </label>
             <label>
-              Mess
+              
               <select type="number" name="Mid" value={credentials.Mid} onChange={handleChange} required
               >
-                <option value="" disabled >Select</option>
+                <option value="" disabled >Mess</option>
                 <option value="1">South</option>
                 <option value="2">North</option>
               </select>
@@ -79,6 +82,7 @@ const Signup = () => {
             <button type="submit">Sign Up</button>
           </form>
         </div>
+      </div>
       </div>
     </>
   );
