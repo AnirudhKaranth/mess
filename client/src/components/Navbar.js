@@ -35,6 +35,7 @@ const Navbar = () => {
             </ul>
             {/* <form className="d-flex" role="search"> */}
             {/* <Link className="btn btn-primary mx-2" to="/login" >Logout</Link> */}
+            <Link className={`mx-2 nav-link ${location.pathname === "/editmenu" ? "active" : ""}`} to="/editmenu" >EditMenu</Link>
             <Link className={`mx-2 nav-link ${location.pathname === "/signup" ? "active" : ""}`} to="/signup" >Signup</Link>
             <Link className={`mx-1 nav-link ${location.pathname === "/account" ? "active" : ""}`} to="/account" >Account</Link>
             {/* </form> */}

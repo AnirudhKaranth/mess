@@ -44,7 +44,6 @@ export const voteMenu = async (req, res) => {
     })
   : [];
 
-
     if (existingVotes.length === 0) {
       await Vote.bulkCreate(
         votes.map((vote) => ({

@@ -1,6 +1,7 @@
 // OptionsSelector.js
 import React, { useState } from 'react';
 import './EditMenu.css';
+import Navbar from './Navbar';
 
 const EditMenu = () => {
   const [selectedDay, setSelectedDay] = useState('');
@@ -28,6 +29,7 @@ const EditMenu = () => {
 
   return (
     <div className="full-screen bgContainer">
+    <Navbar/>
     <div className=" editContainer">
       <div className="group">
         <u>Day of the Week</u>
