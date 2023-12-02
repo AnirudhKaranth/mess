@@ -9,6 +9,7 @@ import Signup from "./components/Signup";
 import Account from "./components/Account";
 
 import EditMenu from "./components/EditMenu";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Login />} />
-        <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/menu" element={<Home />} />
-        <Route exact path="/vote" element={<Vote />} />
+        <Route exact path="/signup" element={ <Signup />} />
+        <Route exact path="/menu" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route exact path="/vote" element={<ProtectedRoute><Vote /></ProtectedRoute>} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/account" element={<Account />} />
         <Route exact path="/editmenu" element={<EditMenu />} />

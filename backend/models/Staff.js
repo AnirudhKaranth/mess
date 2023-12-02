@@ -15,6 +15,10 @@ const Staff = sequelize.define('Staff', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  role:{
+    type: DataTypes.STRING,
+    defaultValue:"staff"
+  }
 },
 {
     timestamps: false,

@@ -23,6 +23,9 @@ const Login = () => {
     if (json.success) {
       console.log(json);
       localStorage.setItem("token", json.authtoken);
+      // localStorage.setItem("user", json.data);
+      localStorage.setItem("user", JSON.stringify(json.data));
+
       navigate("/vote");
     } else {
       alert("Invalid credentials");

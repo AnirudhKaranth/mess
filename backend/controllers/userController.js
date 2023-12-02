@@ -45,21 +45,22 @@ export const loginUser = async(req, res, next)=>{
     // return res.status(400).send('Invalid ')
     success = false
     return res.status(400).json({ success, error: "Please try to login with correct credentials" });
-
-    }   
-    const data = { //send payload if both creds are correct
+    } 
+    
+const data = { //send payload if both creds are correct
       user:{
-        Uid: user.Uid
+        Uid: user.Uid,
+        Uname: user.Uname,
+        role: user.role
       }
     }
     const authtoken = jwt.sign(data, JWT_SECRET);
     success = true;
-    res.json({ success, authtoken }) //disp details to console
+    res.json({ data, success, authtoken }) //disp details to console
 
   } catch (err) {
     return res.status(500).send('Internal server error');
   }
 }
-
 
 

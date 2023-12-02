@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
+  let user = localStorage.getItem('user')
+  user = user ? JSON.parse : null
 
   return (
       <nav className="navbar navbar-expand-lg" style={{backgroundColor: 'lightgray'}}>
@@ -31,7 +33,7 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link className={`nav-link ${location.pathname === "/menu" ? "active" : ""}`} to="/menu">Menu</Link>
               </li>
-              
+              {user.role==="owner " && <Link to='/addFood' className='p-3  sm:inline-block'><GrAdd fontSize={25} /></Link>}
             </ul>
             {/* <form className="d-flex" role="search"> */}
             {/* <Link className="btn btn-primary mx-2" to="/login" >Logout</Link> */}
