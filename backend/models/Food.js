@@ -38,9 +38,6 @@ const Food = sequelize.define(
 
 Food.belongsTo(Mess, { foreignKey: 'Mid' });
 
-// `sequelize.define` also returns the model
-console.log(Food === sequelize.models.Food); // true
-
 await Food.sync();
 
 export default Food;

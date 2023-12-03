@@ -109,27 +109,40 @@ cron.schedule('0 18 * * 5', () => {
   updateMenu();
 });
 
-// ROUTE 4: Function to display food options to vote'/foodoptions'
-export const foodOptions = async (req, res) => {
+// // ROUTE 4: Function to display food options to vote'/foodnames'
+export const foodNames = async (req, res) => {
   try {
-    // Fetch food names based on Fids
     const foodNames = await Food.findAll({
       attributes: ['Fid', 'Fname'],
-      where: {
-        Fid: fids,
-      },
     });
-
-    // Create a map of Fid to Fname
-    const foodOptions = foodNames.reduce((acc, { Fid, Fname }) => {
-      acc[Fid] = Fname;
-      return acc;
-    }, {});
-
-    res.json(foodOptions);
+    res.json(foodNames);
   } catch (error) {
     console.error('Error fetching food names:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+// // ROUTE 4: Function to display food options to vote'/foodoptions'
+// export const foodOptions = async (req, res) => {
+//   try {
+//     // Fetch food names based on Fids
+//     const foodNames = await Food.findAll({
+//       attributes: ['Fid', 'Fname'],
+//       where: {
+//         Fid: fids,
+//       },
+//     });
+
+//     // Create a map of Fid to Fname
+//     const foodOptions = foodNames.reduce((acc, { Fid, Fname }) => {
+//       acc[Fid] = Fname;
+//       return acc;
+//     }, {});
+
+//     res.json(foodOptions);
+  // } catch (error) {
+  //   console.error('Error fetching food names:', error);
+  //   res.status(500).json({ error: 'Internal Server Error' });
+  // }
+// };
 

@@ -22,11 +22,11 @@ const Login = () => {
 
     if (json.success) {
       console.log(json);
-      localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("token", json.authtoken); //save token
       // localStorage.setItem("user", json.data);
       localStorage.setItem("user", JSON.stringify(json.data));
 
-      navigate("/vote");
+      navigate("/cover");
     } else {
       alert("Invalid credentials");
     }
@@ -39,11 +39,11 @@ const Login = () => {
   return (
     <>
       <div className="full-screen bg-login">
-        <div className="container ">
+        <div className="login-container ">
           <div className="row justify-content-center">
             <div className="login-form">
               <form onSubmit={handleSubmit}>
-                <h2 className="text-center my-4">LOGIN</h2>
+                <h2 className="text-center my-4">STUDENT LOGIN</h2>
                 <div className="md-3">
                   <label htmlFor="Uname" className="form-label">
                     {/* Username */}
@@ -73,10 +73,10 @@ const Login = () => {
                   />
                 </div>
                 <div className="text-center my-3">
-                  <button type="submit" className="btn btn-light my-3">
+                  <button type="submit" className="btn btn-light">
                     SUBMIT
                   </button>
-                  <button type="button" className="btn btn-light my-3" onClick={()=>{navigate('/stafflogin')}}>
+                  <button type="button" className="btn btn-light" onClick={()=>{navigate('/stafflogin')}}>
                     STAFF
                   </button>
                 </div>

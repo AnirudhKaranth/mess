@@ -39,11 +39,11 @@ const StaffLogin = () => {
   return (
     <>
       <div className="full-screen bg-login">
-        <div className="container ">
+        <div className="login-container ">
           <div className="row justify-content-center">
             <div className="login-form">
               <form onSubmit={handleSubmit}>
-                <h2 className="text-center my-4">LOGIN</h2>
+                <h2 className="text-center my-4">STAFF  LOGIN</h2>
                 <div className="md-3">
                   <label htmlFor="Uname" className="form-label">
                     {/* Username */}
@@ -76,8 +76,8 @@ const StaffLogin = () => {
                   <button type="submit" className="btn btn-light my-3">
                     SUBMIT
                   </button>
-                  <button type="button" className="btn btn-light my-3" onClick={()=>{navigate('/stafflogin')}}>
-                    STAFF
+                  <button type="button" className="btn btn-light my-3" onClick={()=>{navigate('/')}}>
+                    STUDENT
                   </button>
                 </div>
               </form>

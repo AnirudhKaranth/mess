@@ -1,8 +1,10 @@
 import Staff from "../models/Staff.js";
+import Menu from "../models/Menu.js";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 const JWT_SECRET = 'supasecreto'
 
+// ROUTE 2: Staff login '/loginstaff'
 export const loginStaff = async(req, res, next)=>{
   
     let success = false;
@@ -40,3 +42,35 @@ export const loginStaff = async(req, res, next)=>{
     }
   }
   
+// ROUTE 2: Edit menu for staff '/editmenu'
+export const editMenu = async(req, res, next)=>{
+ 
+  try {
+    const { selectedDay, selectedTime, selectedFood } = req.body;
+
+    // Find the menu entry to update based on selected day and time
+    const existingMenu = await Menu.findOne({
+      where: {
+        Day: selectedDay,
+        Timeslot: selectedTime,
+      },
+    });
+
+    if (!existingMenu) {
+      return res.status(404).json({ success: false, error: 'Menu not found' });
+    }
+
+    // Update the menu entry
+    await existingMenu.update({
+      Fid: selectedFood,
+    });
+
+    // Send a success response
+    res.json({ success: true, menu: existingMenu });
+  } catch (error) {
+    // Handle errors
+    console.error(error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+};
+

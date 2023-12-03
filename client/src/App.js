@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Login from "./components/Login";
+import Cover from "./components/Cover";
 import Vote from "./components/Vote";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/stafflogin" element={ <StaffLogin />} />
+        <Route exact path="/cover" element={ <Cover />} />
         <Route exact path="/menu" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route exact path="/vote" element={<ProtectedRoute><Vote /></ProtectedRoute>} />
         <Route exact path="/signup" element={<Signup />} />

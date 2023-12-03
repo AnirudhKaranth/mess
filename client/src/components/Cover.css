@@ -1,54 +1,69 @@
 /* Cover.css */
+h1 {
+  text-align: center;
+  font-size: 70px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 50px;
+
+}
+.nav-cover-container {
+  background: url('../../public/fork.png');
+  background-position: 0%;
+  margin: 0;
+  padding: 0;
+  background-size: 100% 100%;
+}
 
 .cover-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .cover-error-message {
-    color: red;
-    font-size: 18px;
-  }
-  
-  .cover-day-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .cover-day-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .cover-meals-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .cover-menu-card {
-    background-color: lightgray;
-    /* border: 1px solid #ccc; */
-    border-radius: 8px;
-    margin: 10px;
-    padding: 15px;
-    width: 200px;
-  }
-  
-  .cover-meal-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .cover-meal-time {
-    font-size: 17px;
-  }
-  
-  .cover-menu-item {
-    margin-top: 8px;
-    font-size: large;
-    color: black;
-  }
-  
+  width: 24%; /* Set the width of the cover container */
+  margin: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 10px;
+  margin: 50px 60px 0; /* Adjusted the margin to align the entire card to the start */
+
+}
+
+.cover-day-card {
+  background-color: rgb(247, 247, 245);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 10px;
+  margin-bottom: 15px; /* Adjust margin as needed */
+}
+
+.cover-day-header {
+  background-color: rgb(217 217 217);
+  color: black;
+  padding: 5px;
+  text-align: center;
+  margin: 2px;
+  border-radius: 8px;
+  font-size: larger;
+}
+
+.cover-meals-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cover-meal-section {
+  padding: 15px;
+}
+
+.cover-meal-time {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.cover-menu-item {
+  margin-bottom: 8px;
+  font-size: larger;
+}

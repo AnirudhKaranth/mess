@@ -1,6 +1,7 @@
 // Cover.js
 import React, { useState, useEffect } from "react";
 import "./Cover.css";
+import Navbar from './Navbar';
 
 const Cover = () => {
   const [menuData, setMenuData] = useState([]);
@@ -16,7 +17,6 @@ const Cover = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Menu data received:", data);
         setMenuData(data);
       })
       .catch((error) => {
@@ -30,7 +30,7 @@ const Cover = () => {
     const currentDay = currentDate.toLocaleDateString("en-US", {
       weekday: "long",
     });
-    console.log("Current Day:", currentDay);
+    // console.log("Current Day:", currentDay);
 
     // Convert the menuData days to uppercase for case-insensitive comparison
     const uppercaseMenuData = menuData.map((menuItem) => ({
@@ -41,12 +41,17 @@ const Cover = () => {
     const currentDayMenu = uppercaseMenuData.filter(
       (menuItem) => menuItem.Day === currentDay.toUpperCase()
     );
-    console.log("Current Day Menu:", currentDayMenu);
+    // console.log("Current Day Menu:", currentDayMenu);
     return currentDayMenu;
   };
 
   return (
-    <>      
+    <>
+    <div className="full-screen nav-cover-container">  
+    <Navbar/> 
+    <br />  
+    <h2>WELCOME TO</h2>
+    <h1>NAMMA MESS</h1>
       <div className="cover-container">
         {error ? (
           <div className="cover-error-message">{error}</div>
@@ -68,6 +73,7 @@ const Cover = () => {
           </div>
         )}
       </div>
+    </div>
     </>
   );
 };

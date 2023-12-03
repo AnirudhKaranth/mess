@@ -15,10 +15,14 @@
   padding: 0;
   background-size: 100% 100%;
 }
+
+.login-form {
+  width: 65%;
+}
   
-  .container {
+  .login-container {
     margin-top: 200px;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 8px;
   }
   

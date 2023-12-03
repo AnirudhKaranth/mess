@@ -35,9 +35,10 @@ const Home = () => {
   };
 
   return (
-    <div className='full-screen nav-home-container'>
+    <div className='nav-home-container'>
       <Navbar />
-
+      <br />
+      <h2 style={{fontSize:'46px'}}>MESS</h2>
       <div className="home-container">
         {error ? (
           <div className="error-message">{error}</div>

@@ -8,7 +8,7 @@ const Navbar = () => {
   user = user ? JSON.parse(user) : null
   console.log(user);
   return (
-      <nav className="navbar navbar-expand-lg" style={{backgroundColor: 'lightgray'}}>
+      <nav className="navbar navbar-expand-lg" style={{backgroundColor: 'rgb(217, 217, 217)'}}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/vote">
             Hostel Mess
@@ -28,7 +28,9 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
              
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname === "/vote" ? "active" : ""}`} to="/vote">Vote</Link>
+              <Link className={`nav-link ${location.pathname === "/cover" ? "active" : ""}`} to="/cover">Home</Link>              </li>
+              <li className="nav-item">
+              {user?.user?.role==="student" && <Link className={`nav-link ${location.pathname === "/vote" ? "active" : ""}`} to="/vote">Vote</Link>}
               </li>
               <li className="nav-item">
                 <Link className={`nav-link ${location.pathname === "/menu" ? "active" : ""}`} to="/menu">Menu</Link>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Vote.css';
 import Navbar from './Navbar';
-import Cover from './Cover';
 
 const Vote = () => {
   const [selectedFids, setSelectedFids] = useState({});
@@ -79,8 +78,8 @@ const Vote = () => {
   return (
     <div className='full-screen nav_vote_container'>
       <Navbar />
-      <Cover/>
-      <br />
+      <br />  
+    <h2>VOTE</h2>
       <div className="vote_container">
         {error ? (
           <div className="error_message">{error}</div>

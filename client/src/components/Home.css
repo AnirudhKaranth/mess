@@ -1,7 +1,7 @@
 /* Home.css */
 
 .nav-home-container {
-  background: url('../../public/back23.png');
+  background: url('../../public/plates.png');
   margin: 0;
   padding: 0;
   background-size: 100% 100%;
@@ -10,8 +10,9 @@
 .home-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0em;
-  justify-content: center;
+  row-gap: 61px;
+  column-gap: 201px;
+  justify-content: space-around;
 }
 
 .menu-card {
@@ -25,17 +26,17 @@
 }
 
 .day-header {
-  background-color: #707b87;
-  color: #fff;
+  background-color: rgb(217 217 217);
+  color: black;
   padding: 10px;
   text-align: center;
   margin: 2px;
   border-radius: 5px;
-  font-weight: bold;
+  font-size: larger;
 }
 
 .meals-container {
-  padding: 15px;
+  padding: 10px;
 }
 
 .meal-section {
