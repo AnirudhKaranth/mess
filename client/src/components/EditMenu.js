@@ -62,6 +62,8 @@ const EditMenu = () => {
         throw new Error('Failed to update menu');
       }
 
+      alert('Menu Updated')
+      
       // Handle success or update UI as needed
       console.log('Menu updated successfully');
     } catch (error) {
@@ -99,14 +101,17 @@ const EditMenu = () => {
         <div className="group">
           <u>Food Options</u>
           <div className="labelContainer">
-            <select value={selectedFood} onChange={handleFoodChange}>
-              {foodOptions.map((food) => (
-                <option key={food.Fid} value={food.Fid}>
-                  {food.Fname}
-                </option>
-              ))}
-            </select>
-          </div>
+            <select type="text" value={selectedFood} onChange={handleFoodChange} required>
+            <option value="" disabled selected>
+            Select
+            </option>
+            {foodOptions.map((food) => (
+              <option key={food.Fid} value={food.Fid}>
+                {food.Fname}
+              </option>
+            ))}
+          </select>
+        </div>
         </div>
         <button onClick={handleApplyChanges}>Apply Changes</button>
       </div>

@@ -35,7 +35,8 @@ export const showMenu = async (req, res) => {
 // ROUTE 2: Vote for menu items using: POST '/votemenu'
 export const voteMenu = async (req, res) => {
   try {
-    const userId = req.header('userId');
+    const userId = req.user.userId
+    console.log(userId);
     const { votes } = req.body;
 
     const existingVotes = votes.length > 0

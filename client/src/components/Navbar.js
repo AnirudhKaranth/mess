@@ -1,17 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  let navigate = useNavigate();
   const location = useLocation();
   let user = localStorage.getItem('user')
   user = user ? JSON.parse(user) : null
   console.log(user);
+
+  const handleLogout = ()=>{
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    navigate('/')
+  }
   return (
       <nav className="navbar navbar-expand-lg" style={{backgroundColor: 'rgb(217, 217, 217)'}}>
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/vote">
-            Hostel Mess
+          <Link className="navbar-brand" to="/about">
+            Namma Mess
           </Link>
           <button
             className="navbar-toggler"
@@ -40,7 +48,8 @@ const Navbar = () => {
             {/* <Link className="btn btn-primary mx-2" to="/login" >Logout</Link> */}
             {user?.user?.role==="staff" && <Link className={`mx-2 nav-link ${location.pathname === "/editmenu" ? "active" : ""}`} to="/editmenu" >EditMenu</Link>}
             {user?.user?.role==="staff" && <Link className={`mx-2 nav-link ${location.pathname === "/signup" ? "active" : ""}`} to="/signup" >Signup</Link>}
-            <Link className={`mx-1 nav-link ${location.pathname === "/account" ? "active" : ""}`} to="/account" >Account</Link>
+            <Link className={`mx-2 nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>
+            <button className={`mx-1 nav-link`} onClick={handleLogout} >Logout</button>
             {/* </form> */}
           </div>
         </div>

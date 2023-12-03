@@ -1,15 +1,13 @@
 /* Login.css */
 
-
 .full-screen {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%; 
   /* // or "height: auto" if page is large and you need to scrool down to see all content */
 }
 
 .bg-login {
-  font-family: 'Spicy Rice';
   background: url('../../public/TV.png');
   margin: 0;
   padding: 0;
@@ -17,60 +15,58 @@
 }
 
 .login-form {
-  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
 }
-  
-  .login-container {
-    margin-top: 200px;
-    /* padding: 20px; */
-    border-radius: 8px;
-  }
-  
- login-form {
-   border-radius: 8px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    padding: 10px;
-    width: 300px;
-    height: 420px;
-  } 
-  
-  h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  /* .form-label { */
-    /* font-weight: bold; */
-  /* } */
-  
-  .form-control {
-    width: 35%;
-    padding: 10px;
-    margin: auto;
-    /* margin-top: auto; */
-    /* margin-bottom: 16px; */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .btn-light {
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 20%;
-    margin-top: 13px;
-  }
-  
-  .btn-light:hover {
-    background-color: #0056b3;
-  }
-  
-  .text-center {
-    height: 20px;
-    text-align: center;
-  }
+
+.login-container {
+  border-radius: 8px;
+  /* Other styles remain unchanged */
+}
+
+.login-form {
+  border-radius: 8px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  padding: 10px;
+  width: 300px;
+  height: 420px;
+}
+
+h2 {
+  font-size: 35px;
+  text-align: center;
+  color: #333;
+}
+
+.form-control {
+  width: 100%; /* Change width to 100% to match the signup form */
+  padding: 10px;
+  margin-bottom: 24px; /* Add margin-bottom to match the signup form */
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+.btn-light {
+  background-color: white;
+  /* color: black; */
+  padding: 9px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: large;
+}
+
+.btn-light:hover {
+  background-color: grey;
+}
+
+.text-center {
+  height: 50px;
+}
+
   

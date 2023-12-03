@@ -4,9 +4,11 @@ import Navbar from './Navbar';
 
 const Vote = () => {
   const [selectedFids, setSelectedFids] = useState({});
-
+  const [isDisabledSat, setisDisabledSat] = useState(false)
+  const [isDisabledSun, setisDisabledSun] = useState(false)
   const [weekendMenu, setWeekendMenu] = useState([]);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     // Fetch data for Saturday and Sunday from your API endpoint
@@ -47,7 +49,7 @@ const Vote = () => {
       const response = await fetch('http://localhost:5000/votemenu', {
         method: 'POST',
         headers: {
-          'userId': 2,
+          'authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -58,10 +60,17 @@ const Vote = () => {
           })),
         }),
       });
-  
+      
       if (!response.ok) {
+        alert('Already voted')
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
+      if(day==="SATURDAY"){
+        setisDisabledSat(true)
+      } else{
+        setisDisabledSun(true)
+      }
+      alert('Voted')
     } catch (error) {
       console.error('Error finalizing vote:', error);
     }
@@ -92,7 +101,7 @@ const Vote = () => {
                   <div key={menuItem.Menuid} className="menu_card">
                     <div className="meal_section">
                       <div className="meal_time">{menuItem.Timeslot}</div>
-                      <div className="menu_item">{menuItem.Food.Fname}</div>
+                      <div className="menu_item">{/*{menuItem.Food.Fname}*/}</div>
                     </div>
                     <div className="vote_section">
 
@@ -106,51 +115,69 @@ const Vote = () => {
                         <option value="" disabled>Select</option>
                 {(day === 'SATURDAY' && menuItem.Timeslot === 'Morning') && (
                   <>
-                    <option value="1">Fname1</option>
-                    <option value="2">Fname2</option>
+                    <option value="21">Masala Dosa</option>
+                    <option value="22">Chole Bhature</option>
+                    <option value="23">Rava Idli</option>
+                    <option value="24">Pav Bhaji</option>
+                    <option value="25">Dahi Vada</option>
+                    <option value="26">Poori Baaji</option>
                   </>
                 )}
                 {(day === 'SUNDAY' && menuItem.Timeslot === 'Morning') && (
                   <>
-                    <option value="3">Fname3</option>
-                    <option value="4">Fname4</option>
+                    <option value="21">Masala Dosa</option>
+                    <option value="22">Chole Bhature</option>
+                    <option value="23">Rava Idli</option>
+                    <option value="24">Pav Bhaji</option>
+                    <option value="25">Dahi Vada</option>
+                    <option value="26">Poori Baaji</option>
                   </>
                 )}
                 {(day === 'SATURDAY' && menuItem.Timeslot === 'Afternoon') && (
                   <>
-                    <option value="5">Fname5</option>
-                    <option value="6">Fname6</option>
+                    <option value="31">Pundi Ghasi</option>
+                    <option value="32">Egg Burji/Soya Chunks</option>
+                    <option value="33">Chicken/Paneer Green Masala</option>
+                    <option value="34">Chicken/Paneer Kabab</option>
+                    <option value="35">Fish/Babycorn Fry</option>
                   </>
                 )}
                 {(day === 'SUNDAY' && menuItem.Timeslot === 'Afternoon') && (
                   <>
-                    <option value="7">Fname7</option>
-                    <option value="8">Fname8</option>
+                    <option value="31">Egg Burji/Soya Chunks</option>
+                    <option value="32">Pundi Ghasi</option>
+                    <option value="33">Chicken/Paneer Green Masala</option>
+                    <option value="34">Chicken/Paneer Kabab</option>
+                    <option value="35">Fish/Babycorn Fry</option>
                   </>
                 )}
                 {(day === 'SATURDAY' && menuItem.Timeslot === 'Night') && (
                   <>
-                    <option value="9">Fname9</option>
-                    <option value="10">Fname10</option>
+                    <option value="41">Biriyani</option>
+                    <option value="42">Parota Sukka/Kurma</option>
+                    <option value="43">Fried Rice</option>
+                    <option value="44">Noodles</option>
+                    <option value="45">Chicken/Paneer Butter Masala</option>
+                    <option value="46">Chicken/Mushroom Pepper</option>
                   </>
                 )}
                 {(day === 'SUNDAY' && menuItem.Timeslot === 'Night') && (
                   <>
-                    <option value="11">Fname11</option>
-                    <option value="12">Fname12</option>
+                    <option value="41">Biriyani</option>
+                    <option value="42">Parota Sukka/Kurma</option>
+                    <option value="43">Fried Rice</option>
+                    <option value="44">Noodles</option>
+                    <option value="45">Chicken/Paneer Butter Masala</option>
+                    <option value="46">Chicken/Mushroom Pepper</option>
                   </>
                 )}
 </select>
-            
-            
                     </div>
                   </div>
                 ))}
               </div>
-              <button className="finalize_button" onClick={() => handleFinalizeVote(day)}>
-                {/* disabled={isVoteFinalized[day]} */}
-                Finalize Vote
-              </button>
+              {day==="SATURDAY" && <button className="finalize_button" onClick={()=> handleFinalizeVote(day)} disabled={isDisabledSat}>Finalize Vote</button>}
+              {day==="SUNDAY" && <button className="finalize_button" onClick={()=> handleFinalizeVote(day)} disabled={isDisabledSun}>Finalize Vote</button>}
             </div>
           ))
         )}

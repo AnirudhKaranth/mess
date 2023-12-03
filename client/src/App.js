@@ -20,11 +20,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/stafflogin" element={ <StaffLogin />} />
-        <Route exact path="/cover" element={ <Cover />} />
+        <Route exact path="/cover" element={<ProtectedRoute><Cover /></ProtectedRoute>} />
         <Route exact path="/menu" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route exact path="/vote" element={<ProtectedRoute><Vote /></ProtectedRoute>} />
         <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/account" element={<Account />} />
+        <Route exact path="/about" element={<Account />} />
         <Route exact path="/editmenu" element={<EditMenu />} />
       </Routes>
     </Router>
